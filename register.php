@@ -14,11 +14,23 @@ if(isUserLoggedIn()) { header("Location: account.php"); die(); }
 if(!empty($_POST))
 {
 	$errors = array();
-	$email = trim($_POST["email"]);
+	if(isset($_POST["emai"]))
+	{
+	$email = trim($_POST["email"]);	
+	}
+	if(isset($_POST["username"]))
+	{
 	$username = trim($_POST["username"]);
+	}
+	if(isset($_POST['displayname']))
+	{
 	$displayname = trim($_POST["displayname"]);
+	}
+	if(isset($_POST['password']) && isset($_POST['passwordc']) )
+	{
 	$password = trim($_POST["password"]);
 	$confirm_pass = trim($_POST["passwordc"]);
+	}
 	$reCaptcha = new ReCaptcha($secretKey);
 	
 	// Was there a reCAPTCHA response?
