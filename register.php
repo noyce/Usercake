@@ -14,7 +14,7 @@ if(isUserLoggedIn()) { header("Location: account.php"); die(); }
 if(!empty($_POST))
 {
 	$errors = array();
-	if(isset($_POST["emai"]))
+	if(isset($_POST["email"]))
 	{
 	$email = trim($_POST["email"]);	
 	}
@@ -32,6 +32,7 @@ if(!empty($_POST))
 	$confirm_pass = trim($_POST["passwordc"]);
 	}
 	$reCaptcha = new ReCaptcha($secretKey);
+	$resp=null;
 	
 	// Was there a reCAPTCHA response?
 	if ($_POST["g-recaptcha-response"]) {
