@@ -1,35 +1,15 @@
 <?php
-/*
-UserCake Version: 2.0.2
-http://usercake.com
-*/
+// logging out user (google sign in)
 
-require_once("models/config.php");
-if (!securePage($_SERVER['PHP_SELF'])){die();}
+require_once 'app/init.php';
 
-//Log the user out
-if(isUserLoggedIn())
-{
-	$loggedInUser->userLogOut();
-}
+$db=new DB;
+$googleClient = new Google_Client;
+$auth = new GoogleAuth($db, $googleClient);
 
-if(!empty($websiteUrl)) 
-{
-	$add_http = "";
-	
-	if(strpos($websiteUrl,"http://") === false)
-	{
-		$add_http = "http://";
-	}
-	
-	header("Location: ".$add_http.$websiteUrl);
-	die();
-}
-else
-{
-	header("Location: http://".$_SERVER['HTTP_HOST']);
-	die();
-}	
+$auth->logout();
+
+header('Location: index.php');
 
 ?>
 

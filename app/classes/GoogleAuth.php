@@ -12,7 +12,7 @@ class GoogleAuth
 
 		$this->client->setClientId('251320849887-uml60p8f0qprglirv89c2q83i194vnfi.apps.googleusercontent.com');
 		$this->client->setClientSecret('_2vv1kIy1e4zt0GdHWDyDTyN');
-		$this->client->setClientUri('http://localhost/Usercake/index.php');
+		$this->client->setRedirectUri('http://localhost/Usercake/index.php');
 		$this->client->setScopes('email');
 
 
@@ -40,7 +40,7 @@ class GoogleAuth
 		{
 			$this->client->authenticate($_GET['code']);
 
-			$_SESSION['access_token'] = $this->client->getAcessToken();
+			$_SESSION['access_token'] = $this->client->getAccessToken();
 
 			//store user in db
 
@@ -49,6 +49,12 @@ class GoogleAuth
 		}
 		return false;
 
+
+	}
+
+	public function logout()
+	{
+		unset($_SESSION['access_token']);
 
 	}
 

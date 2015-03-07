@@ -12,7 +12,7 @@ $googleClient = new Google_Client;
 
 $auth = new GoogleAuth($db,$googleClient);
 
-$authUrl=$auth->checkToen();
+$authUrl=$auth->checkToken();
 
 if($auth->login())
 {
@@ -29,7 +29,7 @@ if($auth->login())
 	</head>
 	<body>
 		<?php if($authUrl): ?>
-			<a href="<?$authUrl?>">Sign in with google id</a>
+			<a href="<?=$authUrl?>">Sign in with google id</a>
 	<?php else: ?>
 			you are logged in <a href="logout.php">Log Out</a>
 	<?php endif; ?>
